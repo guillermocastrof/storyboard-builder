@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storyboard Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="logo">Storyboard Builder</div>
+      <div class="steps-nav">
+        <div class="step-pill active" data-step="1">1 Script</div>
+        <div class="step-pill" data-step="2">2 Frames</div>
+        <div class="step-pill" data-step="3">3 Assign</div>
+        <div class="step-pill" data-step="4">4 Export</div>
+      </div>
+    </header>
+
+    <!-- Step 1: Script Input -->
+    <section id="step-1" class="step active">
+      <div class="step-inner">
+        <h2>Paste or load your script</h2>
+        <p class="sub">We'll extract what's said or shown — no annotations, no timecodes.</p>
+
+        <div class="input-tabs">
+          <button class="tab active" data-tab="paste">Paste text</button>
+          <button class="tab" data-tab="url">URL / Google Doc</button>
+          <button class="tab" data-tab="file">Upload file</button>
+        </div>
+
+        <div id="tab-paste" class="tab-panel active">
+          <textarea id="script-text" placeholder="Paste your script here..."></textarea>
+        </div>
+
+        <div id="tab-url" class="tab-panel">
+          <input type="url" id="script-url" placeholder="https://docs.google.com/document/d/... or any URL" />
+        </div>
+
+        <div id="tab-file" class="tab-panel">
+          <label class="file-drop" id="script-file-label">
+            <input type="file" id="script-file" accept=".txt,.html,.htm" />
+            <span>Drop .txt or .html file here, or click to browse</span>
+          </label>
+          <div id="script-file-name" class="file-name"></div>
+        </div>
+
+        <div id="project-name-wrap">
+          <input type="text" id="project-name" placeholder="Project name (for export)" />
+        </div>
+
+        <button class="btn-primary" id="btn-extract">Extract script sections →</button>
+        <div id="extract-status" class="status-msg"></div>
+      </div>
+    </section>
+
+    <!-- Step 2: Upload Frames -->
+    <section id="step-2" class="step">
+      <div class="step-inner">
+        <h2>Upload style frames</h2>
+        <p class="sub">Upload a PDF (each page becomes a frame) or multiple images.</p>
+
+        <label class="file-drop large" id="frames-drop">
+          <input type="file" id="frames-file" accept=".pdf,.png,.jpg,.jpeg,.webp" multiple />
+          <div class="drop-icon">↑</div>
+          <span>Drop PDF or images here, or click to browse</span>
+          <span class="hint">PDF, PNG, JPG — up to 100MB</span>
+        </label>
+
+        <div id="frames-status" class="status-msg"></div>
+        <div id="frames-grid" class="frames-grid"></div>
+
+        <button class="btn-primary" id="btn-to-assign" style="display:none">Go to assignment →</button>
+      </div>
+    </section>
+
+    <!-- Step 3: Assign -->
+    <section id="step-3" class="step">
+      <div class="step-inner wide">
+        <h2>Assign frames to script sections</h2>
+        <p class="sub">Click a frame, then click a section to assign it. One frame per section.</p>
+
+        <div class="assign-layout">
+          <div class="assign-frames-col">
+            <div class="col-label">Frames</div>
+            <div id="assign-frames" class="assign-frames"></div>
+          </div>
+          <div class="assign-sections-col">
+            <div class="col-label">Script sections</div>
+            <div id="assign-sections" class="assign-sections"></div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn-to-export">Preview & export →</button>
+      </div>
+    </section>
+
+    <!-- Step 4: Export -->
+    <section id="step-4" class="step">
+      <div class="step-inner">
+        <h2>Preview & export</h2>
+        <p class="sub">Review the storyboard, then export as PDF.</p>
+
+        <div id="preview-grid" class="preview-grid"></div>
+
+        <button class="btn-primary" id="btn-export">Export PDF</button>
+        <div id="export-status" class="status-msg"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

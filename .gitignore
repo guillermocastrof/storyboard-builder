@@ -1,0 +1,6 @@
+node_modules/
+.env
+uploads/
+tmp/
+*.pdf
+.DS_Store
